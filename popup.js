@@ -1,16 +1,16 @@
 
 // const msg = document.querySelector('.msg');
-// var changeButton = document.getElementById("pet-change");
+var changeButton = document.getElementById("pet-change");
 // var petName = document.getElementById("pet-name").innerHTML;
 
-// changeButton.addEventListener('click', onChange);
+changeButton.addEventListener('click', onChange);
 
-function onChange(petNames) {
-    let petName = JSON.stringify(petNames);
+function onChange(e) {
     
-    // let petNames = document.getElementById("pet-name");
-    // console.log("petNames: ", petNames);
-    // let petName = petNames.innerHTML;
+    e.preventDefault();
+    let petNames = document.getElementById("pet-name");
+    console.log("petNames: ", petNames);
+    let petName = petNames.innerHTML;
     console.log("petname: ", petName);
     let newPetName ="";
     if (petName === "Bella") {
@@ -29,7 +29,7 @@ function onChange(petNames) {
     let image = "/images/" + newPetName + "Pet128.png";
     // let id = newPetName+"-change";
     console.log(image);
-    var newContent =`<input class="btn" type="submit" id="pet-change" value="Change Pet" onClick="onChange('${newPetName}')">` +
+    var newContent =`<input class="btn" type="submit" id="pet-change" value="Change Pet">` +
                      "<div class='blockContent'>" +
                     `<div class="msg">`+ 
                     `<h3 id="pet-name"> ${newPetName} </h3>` +

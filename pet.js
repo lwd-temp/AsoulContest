@@ -181,6 +181,11 @@ $(document).ready(function () {
     });
     
 
-    // pet walk around
+    // eat food
+    $(document.keydown(function(e){
+        if(animating == false) {
+            
+        }
+    }));
 
 });

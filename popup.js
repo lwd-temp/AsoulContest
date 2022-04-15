@@ -14,19 +14,31 @@ changeButton3.addEventListener('click', onChange3);
 changeButton4.addEventListener('click', onChange4);
 changeButton5.addEventListener('click', onChange5);
 
+const changeSubmit = document.getElementById("pet-submit");
+var petName = "Ava";
 
 
 
+function newMsg(chineseName, image, love){
+    let newContent="";
+    newContent+=
+        `<div>`+
+        `<h3 id="pet-name"> ${chineseName} </h3>` +
+        `<img height="100" style="background-position:left" src=${image} />`+`</div>`+
+        `</div> <div class="row"> <div class="column"> <h1 style="color: red;"> ♥️ </h1> `+
+        `</div> <div class="column"> <div class="progress-container">`+ 
+        `<progress  id="love-progress" value=${love} max="100"></progress>`+
+        `</div></div></div>`;
+    return newContent;
+}
 
 function onChange1(e) {
     e.preventDefault();
     petName = "Ava";
     chineseName = "向晚";
     let image = "/images/" + petName + "Pet128.png";
-    var newContent = `<h3 id="pet-name"> ${chineseName} </h3>` +
-                    `<p>`+
-                    `<img height="100" style="max-width: 120px;background-position: top left;" src=${image} />`+
-                    `</p>`;
+    let love = 10;
+    let newContent = newMsg(chineseName,image,love);
     msg.innerHTML = newContent;
 }
 
@@ -36,10 +48,8 @@ function onChange2(e) {
     petName = "Bella";
     chineseName = "贝拉";
     let image = "/images/" + petName + "Pet128.png";
-    var newContent = `<h3 id="pet-name"> ${chineseName} </h3>` +
-                    `<p>`+
-                    `<img height="100" style="max-width: 120px;background-position: top left;" src=${image} />`+
-                    `</p>`;
+    let love = 10;
+    let newContent = newMsg(chineseName,image,love);
     msg.innerHTML = newContent;
 }
 
@@ -49,11 +59,9 @@ function onChange3(e) {
     petName = "Carol";
     chineseName = "珈乐";
     let image = "/images/" + petName + "Pet128.png";
-    var newContent = `<h3 id="pet-name"> ${chineseName} </h3>` +
-                    `<p>`+
-                    `<img height="100" style="max-width: 120px;background-position: top left;" src=${image} />`+
-                    `</p>`;
-    msg.innerHTML = newContent;
+    let love = 10;
+    let newContent = newMsg(chineseName,image,love);
+    msg.innerHTML = newContent;                
 }
 
 
@@ -62,10 +70,8 @@ function onChange4(e) {
     petName = "Diana";
     chineseName = "嘉然";
     let image = "/images/" + petName + "Pet128.png";
-    var newContent = `<h3 id="pet-name"> ${chineseName} </h3>` +
-                    `<p>`+
-                    `<img height="100" style="max-width: 120px;background-position: top left;" src=${image} />`+
-                    `</p>`;
+    let love = 10;
+    let newContent = newMsg(chineseName,image,love);
     msg.innerHTML = newContent;
 }
 
@@ -75,11 +81,17 @@ function onChange5(e) {
     petName = "Eileen";
     chineseName = "乃琳";
     let image = "/images/" + petName + "Pet128.png";
-    var newContent = `<h3 id="pet-name"> ${chineseName} </h3>` +
-                    `<p>`+
-                    `<img height="100" style="max-width: 120px;background-position: top left;" src=${image} />`+
-                    `</p>`;
+    let love = 10;
+    let newContent = newMsg(chineseName,image,love);
     msg.innerHTML = newContent;
+}
+
+
+changeSubmit.onclick= function(e) {
+    e.preventDefault();
+    chrome.tabs.query({active: true, currentWindow: true},function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {getName: petName});
+    });
 }
 
 

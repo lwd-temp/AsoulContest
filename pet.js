@@ -107,7 +107,7 @@ $(document).ready(function readyHandler() {
 
     var rightCount = true;
     var leftCount = true;
-
+    //dsuifdsfkjdshfk
 
     //Jump and Walk
     $(document).keydown(function(e){
